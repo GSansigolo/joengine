@@ -28,6 +28,11 @@ ifeq (1,${JO_PSEUDO_SATURN_KAI_SUPPORT})
 	JO_COMPILE_WITH_RAM_CARD_MODULE = 0
 endif
 
+ifeq (1,${JO_SATIATOR_SUPPORT})
+	SRCS += $(JO_ENGINE_SRC_DIR)/cd.c
+	SRCS += $(JO_ENGINE_SRC_DIR)/satiator.c
+endif
+
 ifeq (1,${JO_COMPILE_WITH_CONSOLE_SUPPORT})
 	# Console support depends on keyboard support
 	JO_COMPILE_WITH_KEYBOARD_SUPPORT = 1
