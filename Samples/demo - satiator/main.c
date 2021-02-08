@@ -34,16 +34,16 @@ void			my_draw(void)
 	jo_sprite_draw3D(0, 0, 0, 500);
     if(s_mode(s_api) == 0)
 	{
-		jo_printf(5, 10, "Satiator Detected");
+		jo_printf(12, 20,   "Satiator Detected");
 		int result = 0;
 		result = s_opendir(".");
 		if(result != 0)
 		{
-		 	jo_printf(11, 22,  "Satiator Is Not Working");
+			jo_printf(9,  22,"Satiator Is Not Working");
 		}
 		else 
 		{
-			jo_printf(0, 0, "Satiator Is Working");
+			jo_printf(11, 22,  "Satiator Is Working");
 		}
 	} else
 	{
