@@ -310,12 +310,45 @@ char                    *jo_fs_read_file_ptr(const char *const filename, void *b
 char*					jo_fs_read_file_in_dir(const char *const filename, const char *const sub_dir, int *len)
 {
     char                *stream;
-
+    char dirPart[256];
+    char charPart[2];
+    int subDirCount = 0;
+    strcpy(dirPart, "");
+    
     if (sub_dir != JO_NULL)
-        jo_fs_cd(sub_dir);
+    {
+        subDirCount = 1;
+        for(int i =0;i<jo_strlen(sub_dir);i++)
+        {
+            charPart[0] = sub_dir[i];
+            charPart[1]= '\0';
+
+            if(strcmp(charPart,"/") == 0)
+            {
+                if(i < jo_strlen(sub_dir) - 1)
+                {
+                    jo_fs_cd(dirPart);
+                    subDirCount++;
+                }
+                strcpy(dirPart, "");
+            } else
+            {
+                strcat(dirPart, charPart);
+            }
+        }
+
+        if (dirPart != JO_NULL)
+            jo_fs_cd(dirPart);
+    }
     stream = jo_fs_read_file(filename, len);
     if (sub_dir != JO_NULL)
-        jo_fs_cd(JO_PARENT_DIR);
+    {
+        while(subDirCount > 0)
+		{
+            jo_fs_cd(JO_PARENT_DIR);
+			subDirCount--;
+		}
+    }
     return stream;
 }
 

@@ -31,7 +31,6 @@
 void			my_draw(void)
 {
     jo_set_printf_color_index(JO_COLOR_INDEX_Red);
-	jo_sprite_draw3D(0, 0, 0, 500);
     if(s_mode(s_api) == 0)
 	{
 		jo_printf(12, 20,   "Satiator Detected");
