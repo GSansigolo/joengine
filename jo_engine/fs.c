@@ -317,7 +317,6 @@ char*					jo_fs_read_file_in_dir(const char *const filename, const char *const s
     
     if (sub_dir != JO_NULL)
     {
-        subDirCount = 1;
         for(int i =0;i<jo_strlen(sub_dir);i++)
         {
             charPart[0] = sub_dir[i];
@@ -341,7 +340,10 @@ char*					jo_fs_read_file_in_dir(const char *const filename, const char *const s
         }
 
         if (dirPart != JO_NULL)
+        {
             jo_fs_cd(dirPart);
+            subDirCount++;
+        }
     }
     stream = jo_fs_read_file(filename, len);
     if (sub_dir != JO_NULL)
