@@ -323,12 +323,15 @@ char*					jo_fs_read_file_in_dir(const char *const filename, const char *const s
             charPart[0] = sub_dir[i];
             charPart[1]= '\0';
 
-            if(strcmp(charPart,"/") == 0)
+            if((strcmp(charPart,"/") == 0) || (strcmp(charPart,"\\") == 0))
             {
                 if(i < jo_strlen(sub_dir) - 1)
                 {
-                    jo_fs_cd(dirPart);
-                    subDirCount++;
+                    if (dirPart != JO_NULL)
+                    {
+                        jo_fs_cd(dirPart);
+                        subDirCount++;
+                    }
                 }
                 strcpy(dirPart, "");
             } else
