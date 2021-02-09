@@ -313,7 +313,7 @@ char*					jo_fs_read_file_in_dir(const char *const filename, const char *const s
     char dirPart[256];
     char charPart[2];
     int subDirCount = 0;
-    strcpy(dirPart, "");
+    dirPart[0] = '\0';
     
     if (sub_dir != JO_NULL)
     {
@@ -333,7 +333,7 @@ char*					jo_fs_read_file_in_dir(const char *const filename, const char *const s
                         subDirCount++;
                     }
                 }
-                strcpy(dirPart, "");
+                dirPart[0] = '\0';
             } else
             {
                 strcat(dirPart, charPart);
